@@ -2,6 +2,9 @@ FROM openjdk:8-jdk
 
 RUN apt-get update && apt-get install -y git curl && apt-get install -y libltdl7 && rm -rf /var/lib/apt/lists/*
 
+ARG dockerGid=999
+RUN echo "docker:x:${dockerGid}:jenkins" >> /etc/group
+
 ARG user=jenkins
 ARG group=jenkins
 ARG uid=1000
